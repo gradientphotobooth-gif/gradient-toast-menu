@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 async function getMenu() {
   const SHEET_ID =
     "1xAFB9aRbpOb0akjqVqCVxkQu2mGkasUoaY09WqVTbys";

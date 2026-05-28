@@ -4,7 +4,7 @@ export default function TVPage() {
       style={{
         minHeight: "100vh",
         background: "#111",
-        color: "#fff",
+        color: "white",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",

@@ -3,21 +3,18 @@ async function getMenu() {
     "1xAFB9aRbpOb0akjqVqCVxkQu2mGkasUoaY09WqVTbys";
 
   try {
-    const onlineRes = await fetch(
+    const res = await fetch(
       `https://opensheet.elk.sh/${SHEET_ID}/menu`,
       {
         cache: "no-store",
       }
     );
 
-    if (onlineRes.ok) {
-      return await onlineRes.json();
-    }
+    const data = await res.json();
 
-    throw new Error("Online failed");
+    return Array.isArray(data) ? data : [];
   } catch (error) {
-    console.log("Using fallback");
-
+    console.error(error);
     return [];
   }
 }
@@ -57,16 +54,29 @@ export default async function GradientToastMenu() {
   return (
     <div
       id="top"
-      className="min-h-screen bg-[#f8f4ec] text-[#5f5243]"
+      style={{
+        minHeight: "100vh",
+        background: "#f8f4ec",
+        color: "#5f5243",
+        fontFamily:
+          '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+      }}
     >
       {/* HERO */}
-      <section className="relative overflow-hidden border-b border-[#d8c2a3]">
+      <section
+        style={{
+          position: "relative",
+          overflow: "hidden",
+          borderBottom: "1px solid #d8c2a3",
+        }}
+      >
         {/* BG */}
         <div
-          className="absolute inset-0"
           style={{
+            position: "absolute",
+            inset: 0,
             backgroundImage:
-              "url('https://res.cloudinary.com/dlex0z0m5/image/upload/v1779441177/background_n8qsyn.png')",
+              "url('https://res.cloudinary.com/dlex0z0m5/image/upload/f_jpg/v1779441177/background_n8qsyn.png')",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -74,140 +84,192 @@ export default async function GradientToastMenu() {
 
         {/* OVERLAY */}
         <div
-          className="absolute inset-0"
           style={{
+            position: "absolute",
+            inset: 0,
             background:
               "rgba(0,0,0,0.35)",
           }}
         />
 
         {/* CONTENT */}
-        <div className="relative max-w-7xl mx-auto px-6 py-20 lg:py-32">
-          <div className="space-y-6 max-w-3xl">
-            {/* BADGE */}
-            <div
-              style={{
-                display: "inline-block",
-                padding: "10px 18px",
-                borderRadius: "999px",
-                border:
-                  "1px solid rgba(255,255,255,0.3)",
-                background:
-                  "rgba(255,255,255,0.12)",
-                color: "#fff8ef",
-                fontSize: "12px",
-                letterSpacing: "0.3em",
-                textTransform: "uppercase",
-              }}
-            >
-              Gradient Toast Café
-            </div>
+        <div
+          style={{
+            position: "relative",
+            maxWidth: "1280px",
+            margin: "0 auto",
+            padding: "80px 24px",
+          }}
+        >
+          {/* BADGE */}
+          <div
+            style={{
+              display: "inline-block",
+              padding: "10px 18px",
+              borderRadius: "999px",
+              border:
+                "1px solid rgba(255,255,255,0.35)",
+              background:
+                "rgba(255,255,255,0.12)",
+              color: "#fff8ef",
+              fontSize: "12px",
+              letterSpacing: "0.3em",
+              textTransform: "uppercase",
+            }}
+          >
+            Gradient Toast Café
+          </div>
 
-            {/* TITLE */}
-            <h1
-              style={{
-                fontSize: "56px",
-                lineHeight: "1.2",
-                color: "#fff8ef",
-                letterSpacing: "0.04em",
-                fontFamily:
-                  '"Hiragino Mincho ProN", serif',
-              }}
-            >
-              A Toast Culture
-              <br />
-              Experience
-            </h1>
+          {/* TITLE */}
+          <h1
+            style={{
+              fontSize: "54px",
+              lineHeight: "1.2",
+              color: "#fff8ef",
+              marginTop: "24px",
+              marginBottom: "20px",
+              fontWeight: 400,
+              fontFamily:
+                '"Hiragino Mincho ProN", serif',
+            }}
+          >
+            A Toast Culture
+            <br />
+            Experience
+          </h1>
 
-            {/* SUBTEXT */}
-            <p
-              style={{
-                color: "#f6ead9",
-                fontSize: "18px",
-                lineHeight: "1.8",
-                letterSpacing: "0.05em",
-              }}
-            >
-              Toast • Coffee • Waffle • Yogurt •
-              Smoothie • Gelato
-            </p>
+          {/* SUBTEXT */}
+          <p
+            style={{
+              color: "#f6ead9",
+              fontSize: "18px",
+              lineHeight: "1.8",
+              maxWidth: "700px",
+            }}
+          >
+            Toast • Coffee • Waffle • Yogurt •
+            Smoothie • Gelato
+          </p>
 
-            {/* CATEGORY BUTTON */}
-            <div className="flex flex-wrap gap-3 pt-6">
-              {Object.keys(groupedMenu).map(
-                (cate: any) => (
-                  <a
-                    key={cate}
-                    href={`#${cate}`}
-                    style={{
-                      display: "inline-block",
-                      padding: "10px 18px",
-                      borderRadius: "999px",
-                      border:
-                        "1px solid #f2dfc2",
-                      background:
-                        "rgba(255,255,255,0.15)",
-                      color: "#fff8ef",
-                      textDecoration: "none",
-                      fontSize: "14px",
-                      letterSpacing: "0.08em",
-                    }}
-                  >
-                    {cate}
-                  </a>
-                )
-              )}
-            </div>
+          {/* CATEGORY BUTTON */}
+          <div
+            style={{
+              marginTop: "28px",
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "12px",
+            }}
+          >
+            {Object.keys(groupedMenu).map(
+              (cate: any) => (
+                <a
+                  key={cate}
+                  href={`#${cate}`}
+                  style={{
+                    display: "inline-block",
+                    padding: "10px 18px",
+                    borderRadius: "999px",
+                    border:
+                      "1px solid #f2dfc2",
+                    background:
+                      "rgba(255,255,255,0.15)",
+                    color: "#fff8ef",
+                    textDecoration: "none",
+                    fontSize: "14px",
+                  }}
+                >
+                  {cate}
+                </a>
+              )
+            )}
           </div>
         </div>
       </section>
 
       {/* MENU */}
-      <section className="max-w-7xl mx-auto px-6 py-16 space-y-24">
+      <section
+        style={{
+          maxWidth: "1280px",
+          margin: "0 auto",
+          padding: "60px 24px",
+        }}
+      >
         {Object.entries(groupedMenu).map(
           ([cate, cateGroups]: any) => (
             <div
               key={cate}
               id={cate}
-              className="space-y-14"
+              style={{
+                marginBottom: "100px",
+              }}
             >
-              {/* TITLE */}
-              <div className="flex items-center gap-5">
-                <div className="h-px flex-1 bg-[#d8c2a3]" />
+              {/* CATEGORY TITLE */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "20px",
+                  marginBottom: "40px",
+                }}
+              >
+                <div
+                  style={{
+                    flex: 1,
+                    height: "1px",
+                    background:
+                      "#d8c2a3",
+                  }}
+                />
 
                 <h2
                   style={{
-                    fontSize: "42px",
+                    fontSize: "40px",
                     color: "#b38b59",
-                    letterSpacing: "0.18em",
-                    textTransform: "uppercase",
+                    letterSpacing: "0.15em",
+                    textTransform:
+                      "uppercase",
+                    fontWeight: 300,
                     fontFamily:
                       '"Hiragino Mincho ProN", serif',
-                    fontWeight: 300,
                   }}
                 >
                   {cate}
                 </h2>
 
-                <div className="h-px flex-1 bg-[#d8c2a3]" />
+                <div
+                  style={{
+                    flex: 1,
+                    height: "1px",
+                    background:
+                      "#d8c2a3",
+                  }}
+                />
               </div>
 
               {/* BACK TO TOP */}
-              <div className="flex justify-end">
+              <div
+                style={{
+                  textAlign: "right",
+                  marginBottom: "30px",
+                }}
+              >
                 <a
                   href="#top"
                   style={{
-                    display: "inline-block",
-                    padding: "10px 16px",
-                    borderRadius: "999px",
+                    display:
+                      "inline-block",
+                    padding:
+                      "10px 16px",
+                    borderRadius:
+                      "999px",
                     border:
                       "1px solid #d8c2a3",
-                    background: "#fff",
+                    background:
+                      "#ffffff",
                     color: "#8d6f49",
-                    textDecoration: "none",
+                    textDecoration:
+                      "none",
                     fontSize: "12px",
-                    letterSpacing: "0.15em",
-                    textTransform: "uppercase",
                   }}
                 >
                   Back to Top ↑
@@ -219,20 +281,42 @@ export default async function GradientToastMenu() {
                 ([cate1, items]: any) => (
                   <div
                     key={cate1}
-                    className="space-y-8"
+                    style={{
+                      marginBottom:
+                        "60px",
+                    }}
                   >
                     {/* SUB TITLE */}
-                    <div className="flex items-center gap-4">
-                      <div className="w-10 h-px bg-[#d8c2a3]" />
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems:
+                          "center",
+                        gap: "12px",
+                        marginBottom:
+                          "28px",
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: "40px",
+                          height: "1px",
+                          background:
+                            "#d8c2a3",
+                        }}
+                      />
 
                       <h3
                         style={{
-                          fontSize: "28px",
-                          color: "#8d6f49",
-                          letterSpacing: "0.12em",
+                          fontSize:
+                            "26px",
+                          color:
+                            "#8d6f49",
+                          letterSpacing:
+                            "0.08em",
                           textTransform:
                             "uppercase",
-                          fontWeight: 300,
+                          fontWeight: 400,
                         }}
                       >
                         {cate1}
@@ -244,159 +328,177 @@ export default async function GradientToastMenu() {
                       .trim()
                       .toLowerCase() !==
                     "add on" ? (
-                      <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
-                        {items.map((item: any) => (
-                          <div
-                            key={item.item_code}
-                            style={{
-                              border:
-                                "1px solid #eadcc8",
-                              borderRadius:
-                                "28px",
-                              overflow:
-                                "hidden",
-                              background:
-                                "#fffaf4",
-                              boxShadow:
-                                "0 4px 18px rgba(0,0,0,0.06)",
-                            }}
-                          >
-                            {/* IMAGE */}
+                      <div
+                        style={{
+                          display:
+                            "flex",
+                          flexWrap:
+                            "wrap",
+                          gap: "24px",
+                        }}
+                      >
+                        {items.map(
+                          (item: any) => (
                             <div
+                              key={
+                                item.item_code
+                              }
                               style={{
-                                position:
-                                  "relative",
+                                width:
+                                  "100%",
+                                maxWidth:
+                                  "380px",
+                                flex:
+                                  "1 1 320px",
+                                border:
+                                  "1px solid #eadcc8",
+                                borderRadius:
+                                  "28px",
+                                overflow:
+                                  "hidden",
+                                background:
+                                  "#fffaf4",
+                                boxShadow:
+                                  "0 4px 18px rgba(0,0,0,0.06)",
                               }}
                             >
-                              <img
-                                src={
-                                  item.image &&
-                                  item.image.startsWith(
-                                    "http"
-                                  )
-                                    ? item.image
-                                    : "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1200&auto=format&fit=crop"
-                                }
-                                alt={
-                                  item.name ||
-                                  "menu"
-                                }
-                                className="w-full h-[260px]"
-                                style={{
-                                  objectFit:
-                                    "cover",
-                                  display:
-                                    "block",
-                                }}
-                              />
-
-                              {/* BADGE */}
+                              {/* IMAGE */}
                               <div
                                 style={{
                                   position:
-                                    "absolute",
-                                  top: "14px",
-                                  right:
-                                    "14px",
-                                  display:
-                                    "flex",
-                                  gap: "8px",
-                                  flexWrap:
-                                    "wrap",
-                                  justifyContent:
-                                    "flex-end",
+                                    "relative",
                                 }}
                               >
-                                {/* RECOMMEND */}
-                                {String(
-                                  item.recommend
-                                )
-                                  .trim()
-                                  .toLowerCase() ===
-                                  "true" && (
-                                  <div
-                                    style={{
-                                      background:
-                                        "#c49a6c",
-                                      color:
-                                        "white",
-                                      padding:
-                                        "6px 12px",
-                                      borderRadius:
-                                        "999px",
-                                      fontSize:
-                                        "10px",
-                                      letterSpacing:
-                                        "0.1em",
-                                      fontWeight:
-                                        600,
-                                    }}
-                                  >
-                                    RECOMMEND
-                                  </div>
-                                )}
+                                <img
+                                  src={
+                                    item.image &&
+                                    item.image.startsWith(
+                                      "http"
+                                    )
+                                      ? item.image
+                                      : "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1200&auto=format&fit=crop"
+                                  }
+                                  alt={
+                                    item.name ||
+                                    "menu"
+                                  }
+                                  width="100%"
+                                  height="260"
+                                  style={{
+                                    objectFit:
+                                      "cover",
+                                    display:
+                                      "block",
+                                  }}
+                                />
 
-                                {/* NEW */}
-                                {String(
-                                  item.newmenu
-                                )
-                                  .trim()
-                                  .toLowerCase() ===
-                                  "true" && (
-                                  <div
-                                    style={{
-                                      background:
-                                        "#8d6f49",
-                                      color:
-                                        "white",
-                                      padding:
-                                        "6px 12px",
-                                      borderRadius:
-                                        "999px",
-                                      fontSize:
-                                        "10px",
-                                      letterSpacing:
-                                        "0.1em",
-                                      fontWeight:
-                                        600,
-                                    }}
-                                  >
-                                    NEW
-                                  </div>
-                                )}
+                                {/* BADGES */}
+                                <div
+                                  style={{
+                                    position:
+                                      "absolute",
+                                    top: "14px",
+                                    right:
+                                      "14px",
+                                    display:
+                                      "flex",
+                                    gap: "8px",
+                                    flexWrap:
+                                      "wrap",
+                                  }}
+                                >
+                                  {/* RECOMMEND */}
+                                  {String(
+                                    item.recommend
+                                  )
+                                    .trim()
+                                    .toLowerCase() ===
+                                    "true" && (
+                                    <div
+                                      style={{
+                                        background:
+                                          "#c49a6c",
+                                        color:
+                                          "#fff",
+                                        padding:
+                                          "6px 12px",
+                                        borderRadius:
+                                          "999px",
+                                        fontSize:
+                                          "10px",
+                                        fontWeight:
+                                          700,
+                                      }}
+                                    >
+                                      RECOMMEND
+                                    </div>
+                                  )}
+
+                                  {/* NEW */}
+                                  {String(
+                                    item.newmenu
+                                  )
+                                    .trim()
+                                    .toLowerCase() ===
+                                    "true" && (
+                                    <div
+                                      style={{
+                                        background:
+                                          "#8d6f49",
+                                        color:
+                                          "#fff",
+                                        padding:
+                                          "6px 12px",
+                                        borderRadius:
+                                          "999px",
+                                        fontSize:
+                                          "10px",
+                                        fontWeight:
+                                          700,
+                                      }}
+                                    >
+                                      NEW
+                                    </div>
+                                  )}
+                                </div>
                               </div>
-                            </div>
 
-                            {/* CONTENT */}
-                            <div className="p-6 space-y-4">
-                              {/* ITEM CODE */}
+                              {/* CONTENT */}
                               <div
                                 style={{
-                                  fontSize:
-                                    "11px",
-                                  letterSpacing:
-                                    "0.2em",
-                                  color:
-                                    "#b19c88",
-                                  textTransform:
-                                    "uppercase",
+                                  padding:
+                                    "24px",
                                 }}
                               >
-                                {
-                                  item.item_code
-                                }
-                              </div>
+                                {/* ITEM CODE */}
+                                <div
+                                  style={{
+                                    fontSize:
+                                      "11px",
+                                    letterSpacing:
+                                      "0.18em",
+                                    color:
+                                      "#b19c88",
+                                    marginBottom:
+                                      "16px",
+                                  }}
+                                >
+                                  {
+                                    item.item_code
+                                  }
+                                </div>
 
-                              {/* NAME */}
-                              <div className="space-y-2">
+                                {/* TITLE */}
                                 <h3
                                   style={{
                                     fontSize:
                                       "30px",
-                                    color:
-                                      "#4b4033",
                                     lineHeight:
                                       "1.3",
+                                    color:
+                                      "#4b4033",
+                                    marginBottom:
+                                      "10px",
                                     fontFamily:
                                       '"Hiragino Mincho ProN", serif',
                                   }}
@@ -404,6 +506,7 @@ export default async function GradientToastMenu() {
                                   {item.name}
                                 </h3>
 
+                                {/* THAI */}
                                 <div
                                   style={{
                                     fontSize:
@@ -412,118 +515,138 @@ export default async function GradientToastMenu() {
                                       "#6d573d",
                                     fontWeight:
                                       600,
+                                    marginBottom:
+                                      "18px",
                                   }}
                                 >
                                   {item.thai}
                                 </div>
-                              </div>
 
-                              {/* PRICE */}
-                              <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
-                                {item.price1 && (
-                                  <div>
-                                    1P ฿
-                                    {
-                                      item.price1
-                                    }
-                                  </div>
-                                )}
-
-                                {item.price2 && (
-                                  <div>
-                                    2P ฿
-                                    {
-                                      item.price2
-                                    }
-                                  </div>
-                                )}
-
-                                {item.price3 && (
-                                  <div>
-                                    3P ฿
-                                    {
-                                      item.price3
-                                    }
-                                  </div>
-                                )}
-
-                                {item.price4 && (
-                                  <div>
-                                    4P ฿
-                                    {
-                                      item.price4
-                                    }
-                                  </div>
-                                )}
-
-                                {item.price5 && (
-                                  <div>
-                                    5P ฿
-                                    {
-                                      item.price5
-                                    }
-                                  </div>
-                                )}
-
-                                {item.hot && (
-                                  <div>
-                                    ☕ H ฿
-                                    {item.hot}
-                                  </div>
-                                )}
-
-                                {item.iced && (
-                                  <div>
-                                    🧊 I ฿
-                                    {item.iced}
-                                  </div>
-                                )}
-
-                                {item.frappe && (
-                                  <div>
-                                    ❄️ F ฿
-                                    {
-                                      item.frappe
-                                    }
-                                  </div>
-                                )}
-                              </div>
-
-                              {/* DESC */}
-                              <div className="space-y-2">
-                                <p
+                                {/* PRICE */}
+                                <div
                                   style={{
-                                    color:
-                                      "#8e7a67",
+                                    display:
+                                      "flex",
+                                    flexWrap:
+                                      "wrap",
+                                    gap: "12px",
                                     fontSize:
                                       "14px",
-                                    lineHeight:
-                                      "1.8",
-                                  }}
-                                >
-                                  {item.desc}
-                                </p>
-
-                                <p
-                                  style={{
                                     color:
-                                      "#b19c88",
-                                    fontSize:
-                                      "12px",
-                                    fontStyle:
-                                      "italic",
-                                    lineHeight:
-                                      "1.8",
+                                      "#8d6f49",
+                                    marginBottom:
+                                      "18px",
                                   }}
                                 >
-                                  {
-                                    item.desc_e
-                                  }
-                                </p>
+                                  {item.price1 && (
+                                    <div>
+                                      1P ฿
+                                      {
+                                        item.price1
+                                      }
+                                    </div>
+                                  )}
+
+                                  {item.price2 && (
+                                    <div>
+                                      2P ฿
+                                      {
+                                        item.price2
+                                      }
+                                    </div>
+                                  )}
+
+                                  {item.price3 && (
+                                    <div>
+                                      3P ฿
+                                      {
+                                        item.price3
+                                      }
+                                    </div>
+                                  )}
+
+                                  {item.price4 && (
+                                    <div>
+                                      4P ฿
+                                      {
+                                        item.price4
+                                      }
+                                    </div>
+                                  )}
+
+                                  {item.price5 && (
+                                    <div>
+                                      5P ฿
+                                      {
+                                        item.price5
+                                      }
+                                    </div>
+                                  )}
+
+                                  {item.hot && (
+                                    <div>
+                                      ☕ H ฿
+                                      {item.hot}
+                                    </div>
+                                  )}
+
+                                  {item.iced && (
+                                    <div>
+                                      🧊 I ฿
+                                      {item.iced}
+                                    </div>
+                                  )}
+
+                                  {item.frappe && (
+                                    <div>
+                                      ❄️ F ฿
+                                      {
+                                        item.frappe
+                                      }
+                                    </div>
+                                  )}
+                                </div>
+
+                                {/* DESC */}
+                                <div>
+                                  <p
+                                    style={{
+                                      color:
+                                        "#8e7a67",
+                                      fontSize:
+                                        "14px",
+                                      lineHeight:
+                                        "1.8",
+                                      marginBottom:
+                                        "8px",
+                                    }}
+                                  >
+                                    {
+                                      item.desc
+                                    }
+                                  </p>
+
+                                  <p
+                                    style={{
+                                      color:
+                                        "#b19c88",
+                                      fontSize:
+                                        "12px",
+                                      fontStyle:
+                                        "italic",
+                                      lineHeight:
+                                        "1.8",
+                                    }}
+                                  >
+                                    {
+                                      item.desc_e
+                                    }
+                                  </p>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        ))}
+                          )
+                        )}
                       </div>
                     ) : (
                       /* ADD ON */
@@ -538,77 +661,75 @@ export default async function GradientToastMenu() {
                           padding: "32px",
                         }}
                       >
-                        <div className="space-y-4">
-                          {items.map(
-                            (item: any) => (
-                              <div
-                                key={
-                                  item.item_code
-                                }
-                                style={{
-                                  display:
-                                    "flex",
-                                  justifyContent:
-                                    "space-between",
-                                  alignItems:
-                                    "center",
-                                  paddingBottom:
-                                    "16px",
-                                  borderBottom:
-                                    "1px solid #efe3d3",
-                                }}
-                              >
-                                {/* LEFT */}
-                                <div>
-                                  <div
-                                    style={{
-                                      fontSize:
-                                        "18px",
-                                      color:
-                                        "#4b4033",
-                                      fontWeight:
-                                        500,
-                                    }}
-                                  >
-                                    {
-                                      item.name
-                                    }
-                                  </div>
-
-                                  <div
-                                    style={{
-                                      fontSize:
-                                        "14px",
-                                      color:
-                                        "#8d6f49",
-                                    }}
-                                  >
-                                    {
-                                      item.thai
-                                    }
-                                  </div>
-                                </div>
-
-                                {/* PRICE */}
+                        {items.map(
+                          (item: any) => (
+                            <div
+                              key={
+                                item.item_code
+                              }
+                              style={{
+                                display:
+                                  "flex",
+                                justifyContent:
+                                  "space-between",
+                                alignItems:
+                                  "center",
+                                paddingBottom:
+                                  "16px",
+                                marginBottom:
+                                  "16px",
+                                borderBottom:
+                                  "1px solid #efe3d3",
+                              }}
+                            >
+                              <div>
                                 <div
                                   style={{
-                                    color:
-                                      "#c49a6c",
                                     fontSize:
-                                      "20px",
+                                      "18px",
+                                    color:
+                                      "#4b4033",
                                     fontWeight:
                                       600,
                                   }}
                                 >
-                                  +฿
                                   {
-                                    item.price1
+                                    item.name
+                                  }
+                                </div>
+
+                                <div
+                                  style={{
+                                    fontSize:
+                                      "14px",
+                                    color:
+                                      "#8d6f49",
+                                  }}
+                                >
+                                  {
+                                    item.thai
                                   }
                                 </div>
                               </div>
-                            )
-                          )}
-                        </div>
+
+                              <div
+                                style={{
+                                  color:
+                                    "#c49a6c",
+                                  fontSize:
+                                    "20px",
+                                  fontWeight:
+                                    700,
+                                }}
+                              >
+                                +฿
+                                {
+                                  item.price1
+                                }
+                              </div>
+                            </div>
+                          )
+                        )}
                       </div>
                     )}
                   </div>

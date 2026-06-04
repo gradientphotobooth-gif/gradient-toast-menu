@@ -16,7 +16,7 @@ export default async function TVPage() {
 
   const tvGroup = "A";
 
-  const recommend = menu
+  const items = menu
     .filter(
       (item: any) =>
         item.available === "TRUE" &&
@@ -26,20 +26,17 @@ export default async function TVPage() {
       (a: any, b: any) =>
         Number(a.tvOrder || 999) -
         Number(b.tvOrder || 999)
-    )
-    .slice(0, 4);
+    );
 
-  const heroImage =
-    recommend[0]?.tvImage ||
-    "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4";
+  const hero = items[0];
 
   return (
-    <main className="min-h-screen bg-black text-white overflow-hidden">
-      {/* HERO SECTION */}
-      <section className="relative h-[45vh]">
+    <main className="min-h-screen bg-black text-white">
+      {/* HERO */}
+      <section className="relative h-[45vh] overflow-hidden">
         <img
-          src={heroImage}
-          alt="Hero"
+          src={hero?.tvImage}
+          alt={hero?.name}
           className="absolute inset-0 w-full h-full object-cover"
         />
 
@@ -50,77 +47,74 @@ export default async function TVPage() {
             Gradient Toast Cafe
           </h1>
 
-          <p className="text-3xl mt-4 opacity-90">
+          <p className="text-3xl mt-4">
             A Toast Culture Experience
           </p>
         </div>
       </section>
 
-      {/* RECOMMENDED */}
-      <section className="h-[35vh] px-12 py-8">
-        <h2 className="text-5xl font-bold mb-6">
-          ⭐ Recommended
-        </h2>
-
+      {/* MENU GRID */}
+      <section className="px-10 py-6">
         <div className="grid grid-cols-4 gap-6">
-          {recommend.map((item: any, index: number) => (
+          {items.slice(0, 4).map((item: any) => (
             <div
-              key={item.item_code || index}
-              className="bg-white/10 rounded-3xl p-6 backdrop-blur-sm"
+              key={item.item_code}
+              className="bg-white/10 rounded-3xl overflow-hidden"
             >
-              <div className="text-3xl font-bold">
-                {item.name}
-              </div>
+              <img
+                src={item.tvImage || item.image}
+                alt={item.name}
+                className="w-full h-56 object-cover"
+              />
 
-              <div className="text-xl opacity-80 mt-2">
-                {item.thai}
-              </div>
+              <div className="p-5">
+                <h3 className="text-2xl font-bold">
+                  {item.name}
+                </h3>
 
-              {/* DRINK */}
-              {(item.hot || item.iced || item.frappe) && (
-                <div className="mt-4 space-y-1 text-2xl">
+                <p className="text-lg opacity-80 mt-1">
+                  {item.thai}
+                </p>
+
+                <div className="mt-4">
+                  {item.price1 && (
+                    <div className="text-3xl font-bold text-yellow-400">
+                      ฿{item.price1}
+                    </div>
+                  )}
+
                   {item.hot && (
-                    <div>
-                      ☕ H ฿{item.hot}
+                    <div className="text-lg mt-2">
+                      ☕ Hot ฿{item.hot}
                     </div>
                   )}
 
                   {item.iced && (
-                    <div>
-                      🧊 I ฿{item.iced}
+                    <div className="text-lg">
+                      🧊 Iced ฿{item.iced}
                     </div>
                   )}
 
                   {item.frappe && (
-                    <div>
-                      ❄️ F ฿{item.frappe}
+                    <div className="text-lg">
+                      ❄️ Frappe ฿{item.frappe}
                     </div>
                   )}
                 </div>
-              )}
-
-              {/* FOOD */}
-              {!item.hot &&
-                !item.iced &&
-                !item.frappe &&
-                item.price1 && (
-                  <div className="mt-4 text-3xl text-yellow-400 font-bold">
-                    From ฿{item.price1}
-                  </div>
-                )}
+              </div>
             </div>
           ))}
         </div>
       </section>
 
       {/* FOOTER */}
-      <section className="h-[20vh] border-t border-white/20 px-12 flex items-center justify-between">
+      <section className="px-10 py-4 flex items-center justify-between border-t border-white/20">
         <div>
           <div className="text-4xl font-bold">
             Scan for Full Menu
           </div>
 
-          <div className="text-2xl opacity-70 mt-2">
+          <div className="text-xl opacity-70 mt-2">
             Order • Explore • Enjoy
           </div>
         </div>
@@ -128,7 +122,7 @@ export default async function TVPage() {
         <img
           src="/qr-menu.png"
           alt="QR Menu"
-          className="w-40 h-40 bg-white p-2 rounded-xl"
+          className="w-36 h-36 bg-white rounded-xl p-2"
         />
       </section>
     </main>

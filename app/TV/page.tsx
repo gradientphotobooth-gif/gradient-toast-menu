@@ -52,10 +52,12 @@ export default function TVPage() {
     <main
       className="h-screen relative overflow-hidden text-black"
       style={{
-        backgroundImage: "https://res.cloudinary.com/dlex0z0m5/image/upload/v1780562915/web_background_x41da6.png",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
+  backgroundImage:
+    "url('https://res.cloudinary.com/xxxxx/image/upload/v123456/tv-background.jpg')",
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+}}
     >
       {/* Overlay */}
       <div className="absolute inset-0 bg-white/30 backdrop-blur-[2px]" />

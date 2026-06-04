@@ -53,7 +53,7 @@ export default function TVPage() {
       className="h-screen relative overflow-hidden text-black"
       style={{
   backgroundImage:
-    "url('https://res.cloudinary.com/xxxxx/image/upload/v123456/tv-background.jpg')",
+    "url('https://res.cloudinary.com/dlex0z0m5/image/upload/v1780562915/web_background_x41da6.png')",
   backgroundSize: "cover",
   backgroundPosition: "center",
   backgroundRepeat: "no-repeat",

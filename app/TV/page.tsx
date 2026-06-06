@@ -52,7 +52,7 @@ return (
 className="h-screen relative overflow-hidden"
 style={{
 backgroundImage:
-"url('https://res.cloudinary.com/dlex0z0m5/image/upload/v1780562915/web_background_x41da6.png')",
+"url('https://res.cloudinary.com/dlex0z0m5/image/upload/v1780578631/web_background_2_ukczwb.png')",
 backgroundSize: "cover",
 backgroundPosition: "center",
 backgroundRepeat: "no-repeat",

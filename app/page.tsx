@@ -524,90 +524,149 @@ export default async function GradientToastMenu() {
                                   {item.thai}
                                 </div>
 
-                                {/* PRICE */}
-                                <div
-                                  style={{
-                                    display:
-                                      "flex",
-                                    flexWrap:
-                                      "wrap",
-                                    gap: "12px",
-                                    fontSize:
-                                      "14px",
-                                    color:
-                                      "#8d6f49",
-                                    marginBottom:
-                                      "18px",
-                                  }}
-                                >
-                                  {item.price1 && (
-                                    <div>
-                                      1P ฿
-                                      {
-                                        item.price1
-                                      }
-                                    </div>
-                                  )}
+<div
+  style={{
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "10px",
+    marginBottom: "18px",
+  }}
+>
+  {item.price1 && (
+    <div
+      style={{
+        background: "#f4ede4",
+        border: "1px solid #e1d2bd",
+        borderRadius: "12px",
+        padding: "8px 12px",
+        minWidth: "75px",
+        textAlign: "center",
+      }}
+    >
+      <div
+        style={{
+          fontSize: "11px",
+          color: "#8d6f49",
+        }}
+      >
+        1 Piece
+      </div>
 
-                                  {item.price2 && (
-                                    <div>
-                                      2P ฿
-                                      {
-                                        item.price2
-                                      }
-                                    </div>
-                                  )}
+      <div
+        style={{
+          fontSize: "18px",
+          fontWeight: 700,
+          color: "#b38b59",
+        }}
+      >
+        ฿{item.price1}
+      </div>
+    </div>
+  )}
 
-                                  {item.price3 && (
-                                    <div>
-                                      3P ฿
-                                      {
-                                        item.price3
-                                      }
-                                    </div>
-                                  )}
+  {item.price3 && (
+    <div
+      style={{
+        background: "#f4ede4",
+        border: "1px solid #e1d2bd",
+        borderRadius: "12px",
+        padding: "8px 12px",
+        minWidth: "75px",
+        textAlign: "center",
+      }}
+    >
+      <div
+        style={{
+          fontSize: "11px",
+          color: "#8d6f49",
+        }}
+      >
+        3 Pieces
+      </div>
 
-                                  {item.price4 && (
-                                    <div>
-                                      4P ฿
-                                      {
-                                        item.price4
-                                      }
-                                    </div>
-                                  )}
+      <div
+        style={{
+          fontSize: "18px",
+          fontWeight: 700,
+          color: "#b38b59",
+        }}
+      >
+        ฿{item.price3}
+      </div>
+    </div>
+  )}
 
-                                  {item.price5 && (
-                                    <div>
-                                      5P ฿
-                                      {
-                                        item.price5
-                                      }
-                                    </div>
-                                  )}
+  {item.price5 && (
+    <div
+      style={{
+        background: "#f4ede4",
+        border: "1px solid #e1d2bd",
+        borderRadius: "12px",
+        padding: "8px 12px",
+        minWidth: "75px",
+        textAlign: "center",
+      }}
+    >
+      <div
+        style={{
+          fontSize: "11px",
+          color: "#8d6f49",
+        }}
+      >
+        5 Pieces
+      </div>
 
-                                  {item.hot && (
-                                    <div>
-                                      ☕ H ฿
-                                      {item.hot}
-                                    </div>
-                                  )}
+      <div
+        style={{
+          fontSize: "18px",
+          fontWeight: 700,
+          color: "#b38b59",
+        }}
+      >
+        ฿{item.price5}
+      </div>
+    </div>
+  )}
 
-                                  {item.iced && (
-                                    <div>
-                                      🧊 I ฿
-                                      {item.iced}
-                                    </div>
-                                  )}
+  {item.hot && (
+    <div
+      style={{
+        background: "#fff6ee",
+        border: "1px solid #f1d3b2",
+        borderRadius: "12px",
+        padding: "8px 12px",
+      }}
+    >
+      ☕ Hot ฿{item.hot}
+    </div>
+  )}
 
-                                  {item.frappe && (
-                                    <div>
-                                      ❄️ F ฿
-                                      {
-                                        item.frappe
-                                      }
-                                    </div>
-                                  )}
-                                </div>
+  {item.iced && (
+    <div
+      style={{
+        background: "#eef7ff",
+        border: "1px solid #cfe4f6",
+        borderRadius: "12px",
+        padding: "8px 12px",
+      }}
+    >
+      🧊 Iced ฿{item.iced}
+    </div>
+  )}
+
+  {item.frappe && (
+    <div
+      style={{
+        background: "#f2f7ff",
+        border: "1px solid #d6e3f7",
+        borderRadius: "12px",
+        padding: "8px 12px",
+      }}
+    >
+      ❄️ Frappe ฿{item.frappe}
+    </div>
+  )}
+</div>
 
                                 {/* DESC */}
                                 <div>

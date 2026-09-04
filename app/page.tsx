@@ -532,101 +532,197 @@ export default async function GradientToastMenu() {
     marginBottom: "18px",
   }}
 >
-  {item.price1 && (
+ {item.price1 && (
+  <div
+    style={{
+      background: "#f4ede4",
+      border: "1px solid #e1d2bd",
+      borderRadius: "12px",
+      padding: "8px 12px",
+      minWidth: "75px",
+      textAlign: "center",
+    }}
+  >
     <div
       style={{
-        background: "#f4ede4",
-        border: "1px solid #e1d2bd",
-        borderRadius: "12px",
-        padding: "8px 12px",
-        minWidth: "75px",
-        textAlign: "center",
+        fontSize: "11px",
+        color: "#8d6f49",
       }}
     >
-      <div
-        style={{
-          fontSize: "11px",
-          color: "#8d6f49",
-        }}
-      >
-        1 Piece
-      </div>
-
-      <div
-        style={{
-          fontSize: "18px",
-          fontWeight: 700,
-          color: "#b38b59",
-        }}
-      >
-        ฿{item.price1}
-      </div>
+      1 Piece
     </div>
-  )}
 
-  {item.price3 && (
     <div
       style={{
-        background: "#f4ede4",
-        border: "1px solid #e1d2bd",
-        borderRadius: "12px",
-        padding: "8px 12px",
-        minWidth: "75px",
-        textAlign: "center",
+        fontSize: "18px",
+        fontWeight: 700,
+        color: "#b38b59",
       }}
     >
-      <div
-        style={{
-          fontSize: "11px",
-          color: "#8d6f49",
-        }}
-      >
-        3 Pieces
-      </div>
-
-      <div
-        style={{
-          fontSize: "18px",
-          fontWeight: 700,
-          color: "#b38b59",
-        }}
-      >
-        ฿{item.price3}
-      </div>
+      ฿{item.price1}
     </div>
-  )}
+  </div>
+)}
 
-  {item.price5 && (
+{item.price2 && (
+  <div
+    style={{
+      background: "#f4ede4",
+      border: "1px solid #e1d2bd",
+      borderRadius: "12px",
+      padding: "8px 12px",
+      minWidth: "75px",
+      textAlign: "center",
+    }}
+  >
     <div
       style={{
-        background: "#f4ede4",
-        border: "1px solid #e1d2bd",
-        borderRadius: "12px",
-        padding: "8px 12px",
-        minWidth: "75px",
-        textAlign: "center",
+        fontSize: "11px",
+        color: "#8d6f49",
       }}
     >
-      <div
-        style={{
-          fontSize: "11px",
-          color: "#8d6f49",
-        }}
-      >
-        5 Pieces
-      </div>
-
-      <div
-        style={{
-          fontSize: "18px",
-          fontWeight: 700,
-          color: "#b38b59",
-        }}
-      >
-        ฿{item.price5}
-      </div>
+      2 Pieces
     </div>
-  )}
+
+    <div
+      style={{
+        fontSize: "18px",
+        fontWeight: 700,
+        color: "#b38b59",
+      }}
+    >
+      ฿{item.price2}
+    </div>
+  </div>
+)}
+
+{item.price3 && (
+  <div
+    style={{
+      background: "#f4ede4",
+      border: "1px solid #e1d2bd",
+      borderRadius: "12px",
+      padding: "8px 12px",
+      minWidth: "75px",
+      textAlign: "center",
+    }}
+  >
+    <div
+      style={{
+        fontSize: "11px",
+        color: "#8d6f49",
+      }}
+    >
+      3 Pieces
+    </div>
+
+    <div
+      style={{
+        fontSize: "18px",
+        fontWeight: 700,
+        color: "#b38b59",
+      }}
+    >
+      ฿{item.price3}
+    </div>
+  </div>
+)}
+
+{item.price4 && (
+  <div
+    style={{
+      background: "#f4ede4",
+      border: "1px solid #e1d2bd",
+      borderRadius: "12px",
+      padding: "8px 12px",
+      minWidth: "75px",
+      textAlign: "center",
+    }}
+  >
+    <div
+      style={{
+        fontSize: "11px",
+        color: "#8d6f49",
+      }}
+    >
+      4 Pieces
+    </div>
+
+    <div
+      style={{
+        fontSize: "18px",
+        fontWeight: 700,
+        color: "#b38b59",
+      }}
+    >
+      ฿{item.price4}
+    </div>
+  </div>
+)}
+
+{item.price5 && (
+  <div
+    style={{
+      background: "#f4ede4",
+      border: "1px solid #e1d2bd",
+      borderRadius: "12px",
+      padding: "8px 12px",
+      minWidth: "75px",
+      textAlign: "center",
+    }}
+  >
+    <div
+      style={{
+        fontSize: "11px",
+        color: "#8d6f49",
+      }}
+    >
+      5 Pieces
+    </div>
+
+    <div
+      style={{
+        fontSize: "18px",
+        fontWeight: 700,
+        color: "#b38b59",
+      }}
+    >
+      ฿{item.price5}
+    </div>
+  </div>
+)}
+
+{item.set && (
+  <div
+    style={{
+      background: "#f4ede4",
+      border: "1px solid #e1d2bd",
+      borderRadius: "12px",
+      padding: "8px 12px",
+      minWidth: "75px",
+      textAlign: "center",
+    }}
+  >
+    <div
+      style={{
+        fontSize: "11px",
+        color: "#8d6f49",
+      }}
+    >
+      Set
+    </div>
+
+    <div
+      style={{
+        fontSize: "18px",
+        fontWeight: 700,
+        color: "#b38b59",
+      }}
+    >
+      ฿{item.set}
+    </div>
+  </div>
+)}
 
   {item.hot && (
     <div
